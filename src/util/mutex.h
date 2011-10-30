@@ -117,7 +117,12 @@ public:
     }
     return success;
   }
-
+#ifdef __APPLE__
+    bool tryLockWait(long long ns) {
+        return false;   // Darwin doesn't support pthread_mutex_timedlock()
+                        // Should check for compliance before using
+    }
+#else
   bool tryLockWait(long long ns) {
     struct timespec delta;
     delta.tv_sec  = 0;
@@ -129,6 +134,7 @@ public:
     }
     return success;
   }
+#endif
 
   void lock() {
     int ret = pthread_mutex_lock(&m_mutex);
@@ -188,7 +194,7 @@ public:
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-
+#ifndef __APPLE__
 class SpinLock {
 public:
   SpinLock() {
@@ -213,7 +219,7 @@ private:
 
   pthread_spinlock_t m_spinlock;
 };
-
+#endif
 ///////////////////////////////////////////////////////////////////////////////
 
 /**

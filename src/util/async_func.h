@@ -104,10 +104,13 @@ public:
    * the work to AsyncFuncImpl::threadFuncImpl().
    */
   static void *ThreadFunc(void *obj) {
+#ifndef __APPLE__
     pthread_attr_t info;
+#endif
     size_t stacksize, guardsize;
     void *stackaddr;
 
+#ifndef __APPLE__
     pthread_getattr_np(pthread_self(), &info);
     pthread_attr_getstack(&info, &stackaddr, &stacksize);
 
@@ -116,6 +119,13 @@ public:
     // stackaddr + guardsize.
     if (pthread_attr_getguardsize(&info, &guardsize) != 0)
       guardsize = 0;
+#else
+    // Mac OS X lacks pthread_getattr_np()
+    // These replacements are defined in /usr/include/pthread.h on Mac OS X
+    stacksize = pthread_get_stacksize_np(pthread_self());
+    stackaddr = pthread_get_stackaddr_np(pthread_self());
+    guardsize = 0;    
+#endif
 
     ASSERT(stackaddr != NULL);
     ASSERT(stacksize >= PTHREAD_STACK_MIN);
