@@ -238,36 +238,36 @@ inline bool isInitialized(CVarRef v) { return v.isInitialized();}
 Variant getDynamicConstant(CVarRef v, CStrRef name);
 String getUndefinedConstant(CStrRef name);
 
-inline bool isset(bool v)    { return true; }
-inline bool isset(char v)    { return true; }
-inline bool isset(short v)   { return true; }
-inline bool isset(int v)     { return true; }
-inline bool isset(int64 v)   { return true; }
-inline bool isset(double v)  { return true; }
-inline bool isset(CVarRef v) { return !v.isNull();}
-inline bool isset(CObjRef v) { return !v.isNull();}
-inline bool isset(CStrRef v) { return !v.isNull();}
-inline bool isset(CArrRef v) { return !v.isNull();}
+inline bool hphp_isset(bool v)    { return true; }
+inline bool hphp_isset(char v)    { return true; }
+inline bool hphp_isset(short v)   { return true; }
+inline bool hphp_isset(int v)     { return true; }
+inline bool hphp_isset(int64 v)   { return true; }
+inline bool hphp_isset(double v)  { return true; }
+inline bool hphp_isset(CVarRef v) { return !v.isNull();}
+inline bool hphp_isset(CObjRef v) { return !v.isNull();}
+inline bool hphp_isset(CStrRef v) { return !v.isNull();}
+inline bool hphp_isset(CArrRef v) { return !v.isNull();}
 
-bool isset(CVarRef v, bool    offset);
-bool isset(CVarRef v, int64   offset);
-inline bool isset(CVarRef v, int  offset) { return isset(v, (int64)offset); }
-bool isset(CVarRef v, double  offset);
-bool isset(CVarRef v, CArrRef offset);
-bool isset(CVarRef v, CObjRef offset);
-bool isset(CVarRef v, CVarRef offset);
-bool isset(CVarRef v, litstr  offset, bool isString = false);
-bool isset(CVarRef v, CStrRef offset, bool isString = false);
+bool hphp_isset(CVarRef v, bool    offset);
+bool hphp_isset(CVarRef v, int64   offset);
+inline bool hphp_isset(CVarRef v, int  offset) { return hphp_isset(v, (int64)offset); }
+bool hphp_isset(CVarRef v, double  offset);
+bool hphp_isset(CVarRef v, CArrRef offset);
+bool hphp_isset(CVarRef v, CObjRef offset);
+bool hphp_isset(CVarRef v, CVarRef offset);
+bool hphp_isset(CVarRef v, litstr  offset, bool isString = false);
+bool hphp_isset(CVarRef v, CStrRef offset, bool isString = false);
 
-bool isset(CArrRef v, int64   offset);
-inline bool isset(CArrRef v, bool   offset) { return isset(v, (int64)offset); }
-inline bool isset(CArrRef v, int    offset) { return isset(v, (int64)offset); }
-inline bool isset(CArrRef v, double offset) { return isset(v, (int64)offset); }
-bool isset(CArrRef v, CArrRef offset);
-bool isset(CArrRef v, CObjRef offset);
-bool isset(CArrRef v, CVarRef offset);
-bool isset(CArrRef v, litstr  offset, bool isString = false);
-bool isset(CArrRef v, CStrRef offset, bool isString = false);
+bool hphp_isset(CArrRef v, int64   offset);
+inline bool hphp_isset(CArrRef v, bool   offset) { return hphp_isset(v, (int64)offset); }
+inline bool hphp_isset(CArrRef v, int    offset) { return hphp_isset(v, (int64)offset); }
+inline bool hphp_isset(CArrRef v, double offset) { return hphp_isset(v, (int64)offset); }
+bool hphp_isset(CArrRef v, CArrRef offset);
+bool hphp_isset(CArrRef v, CObjRef offset);
+bool hphp_isset(CArrRef v, CVarRef offset);
+bool hphp_isset(CArrRef v, litstr  offset, bool isString = false);
+bool hphp_isset(CArrRef v, CStrRef offset, bool isString = false);
 
 inline Variant unset(Variant &v)               { v.unset();   return null;}
 inline Variant unset(CVarRef v)                {              return null;}

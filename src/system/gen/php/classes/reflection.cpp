@@ -898,7 +898,7 @@ namespace hphp_impl_splitter {}
 bool c_ReflectionMethod::t_isconstructor() {
   INSTANCE_METHOD_INJECTION_BUILTIN(ReflectionMethod, ReflectionMethod::isConstructor);
   {
-    return isset(m_info, NAMSTR(s_sys_ssefecb9dd, "constructor"), true);
+    return hphp_isset(m_info, NAMSTR(s_sys_ssefecb9dd, "constructor"), true);
   }
 }
 namespace hphp_impl_splitter {}

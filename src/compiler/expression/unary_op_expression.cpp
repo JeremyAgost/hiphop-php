@@ -236,7 +236,7 @@ bool UnaryOpExpression::preCompute(CVarRef value, Variant &result) {
       case T_EMPTY:
         result = empty(value); break;
       case T_ISSET:
-        result = isset(value); break;
+        result = hphp_isset(value); break;
       case T_INC:
       case T_DEC:
         ASSERT(false);

@@ -1084,32 +1084,32 @@ bool empty(CVarRef v, CVarRef offset) {
   return empty(v.rvalAt(offset));
 }
 
-bool isset(CArrRef v, int64 offset) {
-  return isset(v.rvalAtRef(offset));
+bool hphp_isset(CArrRef v, int64 offset) {
+  return hphp_isset(v.rvalAtRef(offset));
 }
-bool isset(CArrRef v, CArrRef offset) {
-  return isset(v, VarNR(offset));
+bool hphp_isset(CArrRef v, CArrRef offset) {
+  return hphp_isset(v, VarNR(offset));
 }
-bool isset(CArrRef v, CObjRef offset) {
-  return isset(v, VarNR(offset));
+bool hphp_isset(CArrRef v, CObjRef offset) {
+  return hphp_isset(v, VarNR(offset));
 }
-bool isset(CArrRef v, CStrRef offset, bool isString /* = false */) {
-  return isset(v.rvalAtRef(offset, AccessFlags::IsKey(isString)));
+bool hphp_isset(CArrRef v, CStrRef offset, bool isString /* = false */) {
+  return hphp_isset(v.rvalAtRef(offset, AccessFlags::IsKey(isString)));
 }
-bool isset(CArrRef v, litstr offset, bool isString /* = false */) {
-  return isset(v.rvalAtRef(offset, AccessFlags::IsKey(isString)));
+bool hphp_isset(CArrRef v, litstr offset, bool isString /* = false */) {
+  return hphp_isset(v.rvalAtRef(offset, AccessFlags::IsKey(isString)));
 }
-bool isset(CArrRef v, CVarRef offset) {
-  return isset(v.rvalAtRef(offset));
+bool hphp_isset(CArrRef v, CVarRef offset) {
+  return hphp_isset(v.rvalAtRef(offset));
 }
 
-bool isset(CVarRef v, bool    offset) {
-  return isset(v, VarNR(offset));
+bool hphp_isset(CVarRef v, bool    offset) {
+  return hphp_isset(v, VarNR(offset));
 }
-bool isset(CVarRef v, int64   offset) {
+bool hphp_isset(CVarRef v, int64   offset) {
   Variant::TypedValueAccessor tva = v.getTypedAccessor();
   if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
-    return isset(Variant::GetArrayData(tva)->get(offset));
+    return hphp_isset(Variant::GetArrayData(tva)->get(offset));
   }
   if (Variant::GetAccessorType(tva) == KindOfObject) {
     return Variant::GetArrayAccess(tva)->
@@ -1120,19 +1120,19 @@ bool isset(CVarRef v, int64   offset) {
   }
   return false;
 }
-bool isset(CVarRef v, double  offset) {
-  return isset(v, VarNR(offset));
+bool hphp_isset(CVarRef v, double  offset) {
+  return hphp_isset(v, VarNR(offset));
 }
-bool isset(CVarRef v, CArrRef offset) {
-  return isset(v, VarNR(offset));
+bool hphp_isset(CVarRef v, CArrRef offset) {
+  return hphp_isset(v, VarNR(offset));
 }
-bool isset(CVarRef v, CObjRef offset) {
-  return isset(v, VarNR(offset));
+bool hphp_isset(CVarRef v, CObjRef offset) {
+  return hphp_isset(v, VarNR(offset));
 }
-bool isset(CVarRef v, CVarRef offset) {
+bool hphp_isset(CVarRef v, CVarRef offset) {
   Variant::TypedValueAccessor tva = v.getTypedAccessor();
   if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
-    return isset(Variant::GetAsArray(tva).rvalAtRef(offset));
+    return hphp_isset(Variant::GetAsArray(tva).rvalAtRef(offset));
   }
   if (Variant::GetAccessorType(tva) == KindOfObject) {
     return Variant::GetArrayAccess(tva)->
@@ -1144,28 +1144,28 @@ bool isset(CVarRef v, CVarRef offset) {
   }
   return false;
 }
-bool isset(CVarRef v, litstr offset, bool isString /* = false */) {
+bool hphp_isset(CVarRef v, litstr offset, bool isString /* = false */) {
   Variant::TypedValueAccessor tva = v.getTypedAccessor();
   if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
-    return isset(Variant::GetAsArray(tva).rvalAtRef(
+    return hphp_isset(Variant::GetAsArray(tva).rvalAtRef(
                    offset, AccessFlags::IsKey(isString)));
   }
   if (Variant::GetAccessorType(tva) == KindOfObject ||
       Variant::IsString(tva)) {
-    return isset(v, Variant(offset));
+    return hphp_isset(v, Variant(offset));
   }
   return false;
 }
 
-bool isset(CVarRef v, CStrRef offset, bool isString /* = false */) {
+bool hphp_isset(CVarRef v, CStrRef offset, bool isString /* = false */) {
   Variant::TypedValueAccessor tva = v.getTypedAccessor();
   if (LIKELY(Variant::GetAccessorType(tva) == KindOfArray)) {
-    return isset(Variant::GetAsArray(tva).rvalAtRef(
+    return hphp_isset(Variant::GetAsArray(tva).rvalAtRef(
                    offset, AccessFlags::IsKey(isString)));
   }
   if (Variant::GetAccessorType(tva) == KindOfObject ||
       Variant::IsString(tva)) {
-    return isset(v, Variant(offset));
+    return hphp_isset(v, Variant(offset));
   }
   return false;
 }

@@ -2660,7 +2660,7 @@ bool Variant::o_isset(CStrRef propName,
     return m_data.pvar->o_isset(propName, context);
   }
   if (m_type == KindOfArray) {
-    return isset(rvalAt(propName));
+    return hphp_isset(rvalAt(propName));
   }
   return false;
 }

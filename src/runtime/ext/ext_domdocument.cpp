@@ -1496,7 +1496,7 @@ public:
     return dummy_setter;
   }
 
-  bool isset(ObjectData *obj, CStrRef name) {
+  bool hphp_isset(ObjectData *obj, CStrRef name) {
     const_iterator iter = find(name.data());
     if (iter == end()) return false;
     return !iter->second->test_isset ||
